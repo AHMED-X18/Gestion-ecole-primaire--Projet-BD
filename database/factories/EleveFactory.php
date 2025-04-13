@@ -4,18 +4,17 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-
-use App\Models\Eleve;
-
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Eleve>
+ */
 class EleveFactory extends Factory
 {
-    protected $model = Eleve::class;
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'matricule' => fake()->text(),
@@ -30,6 +29,7 @@ class EleveFactory extends Factory
             'addresse' => fake()->address(),
             'email_tuteur' => fake()->safeEmail(),
             'id_classe' => fake()->text(),
+            'profil' => fake()->text(),
         ];
     }
 }

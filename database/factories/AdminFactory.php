@@ -29,6 +29,7 @@ class AdminFactory extends Factory
             'date_service' => $this->faker->date(),
             'email' => fake()->safeEmail(),
             'password' => fake()->text(),
+            'profil' => fake()->text(),
         ];
     }
 }

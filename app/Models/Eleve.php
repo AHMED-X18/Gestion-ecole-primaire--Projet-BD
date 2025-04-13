@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Eleve extends Model{
     protected $table = 'eleve';
-    protected $fillable = ['matricule', 'nom', 'prénom', 'date_naissance', 'sexe', 'nom_tuteur', 'tel1_tuteur', 'tel2_tuteur', 'statut', 'addresse', 'email_tuteur', 'id_classe'];
+    protected $fillable = ['matricule', 'nom', 'prénom', 'date_naissance', 'sexe', 'nom_tuteur', 'tel1_tuteur', 'tel2_tuteur', 'statut', 'addresse', 'email_tuteur', 'id_classe','profil'];
 
     public function classe(){
         return $this->belongsTo(Classe::class);

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('addresse', 40)->nullable();
             $table->string('email_tuteur', 20)->nullable();
             $table->string('id_classe', 20)->nullable()->index('id_classe');
+            $table->binary('profil')->nullable();
         });
     }
 

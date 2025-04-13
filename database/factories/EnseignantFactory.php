@@ -29,6 +29,7 @@ class EnseignantFactory extends Factory
             'date_service' => $this->faker->date(),
             'email' => fake()->safeEmail(),
             'id_classe' => fake()->text(),
+            'profil' => fake()->text(),
         ];
     }
 }

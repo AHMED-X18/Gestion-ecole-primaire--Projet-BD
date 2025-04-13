@@ -29,6 +29,7 @@ class EntretienFactory extends Factory
             'date_service' => $this->faker->date(),
             'lieu_service' => fake()->text(),
             'email' => fake()->safeEmail(),
+            'profil' => fake()->text(),
         ];
     }
 }

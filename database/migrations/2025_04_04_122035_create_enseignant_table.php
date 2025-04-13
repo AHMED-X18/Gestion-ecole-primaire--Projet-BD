@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('date_service')->nullable();
             $table->string('email', 20)->nullable();
             $table->string('id_classe', 20)->nullable()->index('id_classe');
+            $table->binary('profil')->nullable();
         });
     }
 
