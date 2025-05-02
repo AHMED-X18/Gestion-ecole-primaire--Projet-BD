@@ -1,0 +1,26 @@
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.card-float:hover {
+    animation: float 2s ease-in-out infinite;
+}
+.scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+}
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+.sidebar {
+    transition: all 0.3s ease;
+}
+.sidebar.collapsed {
+    width: 80px;
+}
+.sidebar.collapsed .sidebar-text {
+    display: none;
+}
+.main-content.expanded {
+    margin-left: 80px;
+}

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('statut', 20)->nullable();
             $table->string('addresse', 40)->nullable();
             $table->date('date_service')->nullable();
-            $table->string('email', 20)->nullable();
+            $table->string('email', 20)->nullable()->unique('email');
             $table->string('id_classe', 20)->nullable()->index('id_classe');
             $table->binary('profil')->nullable();
         });

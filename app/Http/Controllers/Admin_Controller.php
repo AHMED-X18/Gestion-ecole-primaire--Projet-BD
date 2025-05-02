@@ -15,53 +15,63 @@ class Admin_Controller extends Controller
         return view('administrateurs.index', compact('administrateurs'));
     }
 
-    // Affiche le formulaire de création d'un nouvel administrateur
-    public function create()
+    // Affiche le formulaire de connexion d'un administrateur
+    public function connexion()
     {
         return view('login');
+    }
+
+    // Affiche le formulaire de création d'un nouvel administrateur
+    public function inscription()
+    {
+        return view('inscription');
+    }
+
+    //Afficher le tableau de bord
+    public function reveal(){
+        return view('tableau de bord');
     }
 
     // Enregistre un nouvel administrateur
     public function store(Request $request)
     {
-        // Validation des données
-        $request->validate([
-            'id_admin' => 'required|string|max:10',
+        try{
+        $data = $request->validate([
             'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
+            'prénom' => 'nullable|string|max:255',
             'date_naissance' => 'required|date',
-            'sexe' => 'required|string|max:10',
-            'tel1' => 'required|integer',
-            'tel2' => 'required|integer',
+            'sexe' => 'required|in:Homme,Femme',
+            'tel1' => 'required|numeric',
+            'tel2' => 'nullable|numeric',
             'statut' => 'required|string|max:255',
             'addresse' => 'required|string|max:255',
             'date_service' => 'required|date',
-            'email' => 'required|string|email|max:255|unique:administrateurs',
-            'mot_de_passe' => 'required|string|min:8',
+            'email' => 'required|email',
+            'password' => 'required|string|min:8|confirmed',
             'profil' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Gestion du fichier profil
-        $profilPath = $request->file('profil')->store('profil_images');
+        // Gestion du fichier
+        $profilPath = $request->file('profil')->store('images', 'public');
+        $data['profil'] = $profilPath;
 
-        // Création de l'administrateur
-        Admin::create([
-            'id_admin' => $request->id_admin,
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'date_naissance' => $request->date_naissance,
-            'sexe' => $request->sexe,
-            'tel1' => $request->tel1,
-            'tel2' => $request->tel2,
-            'statut' => $request->statut,
-            'addresse' => $request->addresse,
-            'date_service' => $request->date_service,
-            'email' => $request->email,
-            'mot_de_passe' => bcrypt($request->mot_de_passe), // Hash du mot de passe
-            'profil' => $profilPath, // Enregistrement du chemin du profil
-        ]);
+        // Génération matricule
+        $dateServiceYear = \Carbon\Carbon::parse($data['date_service'])->year;
+        $matricule=($dateServiceYear - 2000) . 'A' . rand(100, 999);
 
-        return redirect()->route('administrateurs.index')->with('success', 'Administrateur créé avec succès !');
+        // Hachage mot de passe
+        $data['password'] = bcrypt($data['password']);
+
+        $data=array_merge(["id_admin"=>$matricule], $data);
+
+            //dd($data);
+           Admin::create($data);
+           return redirect()->route('reveal')->with("success","Administrateur créé avec succès !");
+        }
+        catch (\Exception $e) {
+            dd($e);
+            return back()->withInput()->withErrors(['error' => 'Erreur de sauvegarde : ' . $e->getMessage()]);
+        }
     }
 
     // Affiche un administrateur spécifique
@@ -71,7 +81,7 @@ class Admin_Controller extends Controller
         return view('administrateurs.show', compact('administrateur'));
     }
 
-    // Affiche le formulaire d'édition pour un administrateur existant
+ /*   // Affiche le formulaire d'édition pour un administrateur existant
     public function edit($id)
     {
         $administrateur = Admin::findOrFail($id);
@@ -88,7 +98,7 @@ class Admin_Controller extends Controller
             'date_naissance' => 'required|date',
             'sexe' => 'required|string|max:10',
             'tel1' => 'required|integer',
-            'tel2' => 'required|integer',
+            'tel2' => 'nullable|integer',
             'statut' => 'required|string|max:255',
             'addresse' => 'required|string|max:255',
             'date_service' => 'required|date',
@@ -134,4 +144,5 @@ class Admin_Controller extends Controller
 
         return redirect()->route('administrateurs.index')->with('success', 'Administrateur supprimé avec succès !');
     }
+*/
 }
