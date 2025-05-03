@@ -21,7 +21,6 @@ class LoginController extends Controller
 
         // 2. Recherche de l'utilisateur dans la base de données
         $user = Admin::where('email', $request->email)->first();
-        //dd($user);
 
         // 3. Vérification explicite des credentials
         if (!$user) {
@@ -38,12 +37,15 @@ class LoginController extends Controller
             ]);
         }
 
-
         // 6. Régénération de la session
         $request->session()->regenerate();
 
+        // Stocker les informations de l'utilisateur dans la session
+        session(['admin' => $user]);
+        $admin=(session('admin'));
+
         // 7. Redirection
-        return redirect()->intended('/reveal');
+        return redirect()->intended('/reveal')->with('admin', $admin);
     }
 
     /**
@@ -53,6 +55,8 @@ class LoginController extends Controller
     {
         Auth::logout();
 
+        // Détruire les données de session
+        $request->session()->forget('admin');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

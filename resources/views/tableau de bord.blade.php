@@ -15,7 +15,7 @@
             <div class="p-4 flex items-center justify-between border-b border-indigo-800">
                 <div class="flex items-center">
                     <i class="fas fa-school text-2xl mr-3"></i>
-                    <span class="sidebar-text text-xl font-bold">Les Etoiles de L'avenir</span>
+                    <span class="sidebar-text text-xl font-bold">Les Etoiles de l'Avenir</span>
                 </div>
                 <button id="toggleSidebar" class="text-gray-300 hover:text-white">
                     <i class="fas fa-bars"></i>
@@ -24,11 +24,16 @@
             <div class="flex-grow p-4 overflow-y-auto">
                 <div class="mb-8">
                     <div class="flex items-center mb-4 p-2 bg-indigo-800 rounded-lg">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=7e22ce&color=fff"
+                        <img src="https://ui-avatars.com/api/?name={{ session('admin')->profil }}=7e22ce&color=fff"
                              class="w-10 h-10 rounded-full mr-3">
                         <div class="sidebar-text">
-                            <div class="font-medium">Admin User</div>
+                            @if (session('admin'))
+                            <div class="font-medium">{{session('admin')->nom}}</div>
                             <div class="text-xs text-indigo-300">Administrateur</div>
+                            @else
+                            <div class="font-medium">Nom</div>
+                            <div class="text-xs text-indigo-300">Administrateur</div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -52,7 +57,7 @@
                 </nav>
             </div>
             <div class="p-4 border-t border-indigo-800">
-                <a href="#" class="flex items-center text-indigo-300 hover:text-white">
+                <a href="{{ route('logout.user') }}" class="flex items-center text-indigo-300 hover:text-white">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     <span class="sidebar-text">Déconnexion</span>
                 </a>
@@ -86,7 +91,7 @@
                 <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-6 mb-8 text-white shadow-lg">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div>
-                            <h2 class="text-2xl font-bold mb-2">Bienvenue, Admin User!</h2>
+                            <h2 class="text-2xl font-bold mb-2">Bienvenue, {{session('admin')->nom}}!</h2>
                             <p class="opacity-90">Gérez efficacement tous les aspects de votre établissement scolaire.</p>
                         </div>
                         <div class="mt-4 md:mt-0">

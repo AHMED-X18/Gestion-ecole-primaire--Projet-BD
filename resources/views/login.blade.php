@@ -50,7 +50,7 @@
           <a >Mot de passe oublié ?</a>
         </div>
 
-        <button type="submit" class="login-btn">Se connecter</button>
+        <button type="submit" class="login-btn" >Se connecter</button>
       </form>
 
       <div class="signup-link">

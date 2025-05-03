@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class Admin_Controller extends Controller
 {
@@ -75,10 +76,10 @@ class Admin_Controller extends Controller
     }
 
     // Affiche un administrateur spécifique
-    public function show($id)
+    public function show(String $id)
     {
-        $administrateur = Admin::findOrFail($id);
-        return view('administrateurs.show', compact('administrateur'));
+        $admin = Admin::find($id);
+        return view('tableau de bord', compact('admin'));
     }
 
  /*   // Affiche le formulaire d'édition pour un administrateur existant

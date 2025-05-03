@@ -1,0 +1,20 @@
+.bulletin-card {
+    transition: all 0.3s ease;
+}
+.bulletin-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(166, 202, 151, 0.1);
+}
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.grade-input {
+    width: 60px;
+    text-align: center;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}

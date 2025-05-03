@@ -1,0 +1,23 @@
+.time-slot {
+    height: 60px;
+}
+.subject-color-1 { background-color: #FFD6A5; }
+.subject-color-2 { background-color: #FDFFB6; }
+.subject-color-3 { background-color: #CAFFBF; }
+.subject-color-4 { background-color: #9BF6FF; }
+.subject-color-5 { background-color: #A0C4FF; }
+.subject-color-6 { background-color: #BDB2FF; }
+.subject-color-7 { background-color: #FFC6FF; }
+.draggable {
+    cursor: move;
+    user-select: none;
+}
+.dropzone {
+    min-height: 60px;
+    border: 2px dashed #d1f3b5;
+    transition: all 0.3s;
+}
+.dropzone.highlight {
+    border-color: #4CAF50;
+    background-color: #9bc59b;
+}
