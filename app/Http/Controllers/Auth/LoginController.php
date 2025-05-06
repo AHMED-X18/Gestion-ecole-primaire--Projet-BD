@@ -45,7 +45,7 @@ class LoginController extends Controller
         $admin=(session('admin'));
 
         // 7. Redirection
-        return redirect()->intended('/reveal')->with('admin', $admin);
+        return redirect()->intended('/reveal')->with('admin', session('admin'));
     }
 
     /**

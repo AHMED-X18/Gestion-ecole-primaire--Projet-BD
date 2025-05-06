@@ -28,7 +28,7 @@ class Eleve_controller extends Controller
         $request->validate([
             'matricule' => 'required|string|max:10',
             'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
+            'prénom' => 'required|string|max:255',
             'date_naissance' => 'required|date',
             'sexe' => 'required|string|max:10',
             'nom_tuteur' => 'required|string',

@@ -53,7 +53,7 @@ class Admin_Controller extends Controller
         ]);
 
         // Gestion du fichier
-        $profilPath = $request->file('profil')->store('images', 'public');
+        $profilPath = $request->file('profil')->store(asset('storage/images'));
         $data['profil'] = $profilPath;
 
         // Génération matricule
@@ -67,7 +67,7 @@ class Admin_Controller extends Controller
 
             //dd($data);
            Admin::create($data);
-           return redirect()->route('reveal')->with("success","Administrateur créé avec succès !");
+           return redirect()->route('reveal')->with("admin",session('admin'));
         }
         catch (\Exception $e) {
             dd($e);

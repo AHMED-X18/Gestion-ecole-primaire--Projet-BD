@@ -24,14 +24,19 @@
             <div class="flex-grow p-4 overflow-y-auto">
                 <div class="mb-8">
                     <div class="flex items-center mb-4 p-2 bg-indigo-800 rounded-lg">
-                        <img src="https://ui-avatars.com/api/?name={{ session('admin')->profil }}=7e22ce&color=fff"
+                        @if (session('admin'))
+                        <img srcset="{{ asset(session('admin')->profil) }}"
                              class="w-10 h-10 rounded-full mr-3">
+                        @else
+                         <img src="https://ui-avatars.com/api/?name=Admin+User&background=7e22ce&color=fff"
+                             class="w-10 h-10 rounded-full mr-3">
+                        @endif
                         <div class="sidebar-text">
                             @if (session('admin'))
                             <div class="font-medium">{{session('admin')->nom}}</div>
                             <div class="text-xs text-indigo-300">Administrateur</div>
                             @else
-                            <div class="font-medium">Nom</div>
+                            <div class="font-medium">New user</div>
                             <div class="text-xs text-indigo-300">Administrateur</div>
                             @endif
                         </div>
@@ -91,7 +96,11 @@
                 <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl p-6 mb-8 text-white shadow-lg">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div>
+                        @if (session('admin'))
                             <h2 class="text-2xl font-bold mb-2">Bienvenue, {{session('admin')->nom}}!</h2>
+                        @else
+                             <h2 class="text-2xl font-bold mb-2">Bienvenue, Nouvel utilisateur!</h2>
+                        @endif
                             <p class="opacity-90">Gérez efficacement tous les aspects de votre établissement scolaire.</p>
                         </div>
                         <div class="mt-4 md:mt-0">
@@ -99,58 +108,6 @@
                                 <i class="fas fa-question-circle mr-2"></i> Centre d'aide
                             </button>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Stats Overview -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-blue-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-500 text-sm">Élèves</p>
-                                <h3 class="text-2xl font-bold">1,248</h3>
-                            </div>
-                            <div class="bg-blue-100 p-3 rounded-full text-blue-600">
-                                <i class="fas fa-users text-xl"></i>
-                            </div>
-                        </div>
-                        <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 12% depuis hier</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-purple-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-500 text-sm">Enseignants</p>
-                                <h3 class="text-2xl font-bold">48</h3>
-                            </div>
-                            <div class="bg-purple-100 p-3 rounded-full text-purple-600">
-                                <i class="fas fa-chalkboard-teacher text-xl"></i>
-                            </div>
-                        </div>
-                        <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 2% depuis hier</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-green-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-500 text-sm">Administration</p>
-                                <h3 class="text-2xl font-bold">12</h3>
-                            </div>
-                            <div class="bg-green-100 p-3 rounded-full text-green-600">
-                                <i class="fas fa-user-tie text-xl"></i>
-                            </div>
-                        </div>
-                        <p class="text-red-500 text-sm mt-2"><i class="fas fa-arrow-down mr-1"></i> 5% depuis hier</p>
-                    </div>
-                    <div class="bg-white rounded-xl p-4 shadow-md border-l-4 border-yellow-500">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-500 text-sm">Entretien</p>
-                                <h3 class="text-2xl font-bold">8</h3>
-                            </div>
-                            <div class="bg-yellow-100 p-3 rounded-full text-yellow-600">
-                                <i class="fas fa-broom text-xl"></i>
-                            </div>
-                        </div>
-                        <p class="text-green-500 text-sm mt-2"><i class="fas fa-arrow-up mr-1"></i> 15% depuis hier</p>
                     </div>
                 </div>
 
@@ -228,43 +185,6 @@
                                 <button class="text-yellow-600 hover:text-yellow-800">
                                     <i class="fas fa-chevron-right text-lg"></i>
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recent Activity -->
-                <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-                    <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-xl font-bold text-gray-800">Activité récente</h2>
-                        <a href="#" class="text-blue-600 text-sm hover:underline">Voir tout</a>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="bg-blue-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-user-plus text-blue-600"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-800">Nouvel élève inscrit: <strong>Jean Dupont</strong> en classe de <strong>5ème A</strong></p>
-                                <p class="text-gray-500 text-sm">Il y a 15 minutes</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-purple-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-chalkboard-teacher text-purple-600"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-800"><strong>Mme Martin</strong> a ajouté une évaluation pour la classe de <strong>4ème B</strong></p>
-                                <p class="text-gray-500 text-sm">Il y a 2 heures</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="bg-yellow-100 p-2 rounded-lg mr-4">
-                                <i class="fas fa-broom text-yellow-600"></i>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-gray-800">Rapport d'entretien soumis pour le <strong>Bâtiment B</strong></p>
-                                <p class="text-gray-500 text-sm">Il y a 5 heures</p>
                             </div>
                         </div>
                     </div>
