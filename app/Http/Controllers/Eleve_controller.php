@@ -18,7 +18,7 @@ class Eleve_controller extends Controller
     // Affiche le formulaire de création d'un nouvel élève
     public function create()
     {
-        return view('eleves.create');
+        return view('InscriptionEleve');
     }
 
     // Enregistre un nouvel élève

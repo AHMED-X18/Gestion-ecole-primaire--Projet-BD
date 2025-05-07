@@ -4,9 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin_Controller as AdminController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Eleve_controller;
 
 $admin=session('admin') ? session('admin') : null;
 
@@ -27,5 +25,7 @@ Route::post('/login',[LoginController::class, 'login'])->name('login.user'); // 
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout.user'); // route pour traiter la déconnexion de l'utilisateur
 
 Route::get('/show/{id}', [AdminController::class,'show']);
+
+Route::get("/create", [Eleve_controller::class, 'create'])->name('student.create'); // route pour afficher le formulaire de création d'un nouvel élève
 
 

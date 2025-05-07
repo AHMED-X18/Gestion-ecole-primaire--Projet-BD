@@ -210,6 +210,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/list.js') }}"></script>
     <script src="{{ asset('js/tableau de bord.js') }}"></script>
 </body>
 </html>

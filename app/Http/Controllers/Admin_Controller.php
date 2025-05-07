@@ -47,7 +47,7 @@ class Admin_Controller extends Controller
             'statut' => 'required|string|max:255',
             'addresse' => 'required|string|max:255',
             'date_service' => 'required|date',
-            'email' => 'required|email',
+            'email' => 'required|email|unique',
             'password' => 'required|string|min:8|confirmed',
             'profil' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
