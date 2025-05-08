@@ -20,12 +20,6 @@
 
                     <form id="registrationForm" class="mt-8 space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Matricule -->
-                            <div>
-                                <label for="matricule" class="block text-sm font-medium text-gray-700">Matricule*</label>
-                                <input id="matricule" name="matricule" type="text" required
-                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
-                            </div>
 
                             <!-- Nom -->
                             <div>
@@ -71,8 +65,8 @@
                                 <select id="statut" name="statut" required
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
                                     <option value="">Sélectionnez un statut</option>
-                                    <option value="eleve">Élève</option>
-                                    <option value="autre">Autre</option>
+                                    <option value="Redoublant">Redoublant</option>
+                                    <option value="Non redoublant">Non redoublant</option>
                                 </select>
                             </div>
 
@@ -107,8 +101,8 @@
                             <!-- Adresse -->
                             <div>
                                 <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse*</label>
-                                <textarea id="adresse" name="adresse" rows="2" required
-                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"></textarea>
+                                <input id="adresse" name="adresse" rows="2" type="text" required
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"></input>
                             </div>
 
                             <!-- ID Classe -->
@@ -117,16 +111,26 @@
                                 <select id="id_classe" name="id_classe" required
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
                                     <option value="">Sélectionnez une classe</option>
-                                    <option value="1">Pre maternelle</option>
-                                    <option value="2">Petite section</option>
-                                    <option value="3">Moyenne section</option>
-                                    <option value="4">Grande section </option>
-                                    <option value="5">SIl</option>
-                                    <option value="6">Cp</option>
-                                    <option value="7">CE1</option>
-                                    <option value="8">CE2</option>
-                                    <option value="9">CM1</option>
-                                    <option value="10">CM2</option>
+                                    <option value="Pré-maternelle">Pre maternelle</option>
+                                    <option value="Petite section">Petite section</option>
+                                    <option value="Moyenne section">Moyenne section</option>
+                                    <option value="Grande section">Grande section </option>
+                                    <option value="SIL">SIL</option>
+                                    <option value="CP">CP</option>
+                                    <option value="CE1">CE1</option>
+                                    <option value="CE2">CE2</option>
+                                    <option value="CM1">CM1</option>
+                                    <option value="CM2">CM2</option>
+                                    <option value="Pre-nursery">Pre-nursery</option>
+                                    <option value="Nursery 1">Nursery 1</option>
+                                    <option value="Nursery 2">Nursery 2</option>
+                                    <option value="Class 1">Class 1</option>
+                                    <option value="Class 2">Class 2</option>
+                                    <option value="Class 3">Class 3</option>
+                                    <option value="Class 4">Class 4</option>
+                                    <option value="Class 5">Class 5</option>
+                                    <option value="Class 6">Class 6</option>
+
                                 </select>
                             </div>
 
@@ -193,46 +197,6 @@
         </div>
     </div>
 
-    <script>
-        // Preview de l'image uploadée
-        document.getElementById('profil').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    document.getElementById('preview').src = event.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Gestion du formulaire
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Validation simple
-            const requiredFields = ['matricule', 'nom', 'prenom', 'date_naissance', 'sexe', 'statut', 'nom_tuteur', 'tel1_tuteur', 'adresse', 'id_classe'];
-            let isValid = true;
-
-            requiredFields.forEach(field => {
-                const element = document.getElementById(field) || document.querySelector(`input[name="${field}"]:checked`);
-                if (!element || !element.value) {
-                    isValid = false;
-                    element.classList.add('border-red-500');
-                } else {
-                    element.classList.remove('border-red-500');
-                }
-            });
-
-            if (!isValid) {
-                alert('Veuillez remplir tous les champs obligatoires marqués d\'un *');
-                return;
-            }
-
-            // Ici, vous pourriez envoyer les données au serveur
-            alert('Formulaire soumis avec succès!');
-            // this.reset();
-        });
-    </script>
+    <script src="{{ asset('js/InscriptionEleve.js') }}"></script>
 </body>
 </html>

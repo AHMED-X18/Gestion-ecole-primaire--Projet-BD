@@ -26,6 +26,6 @@ Route::get('/logout',[LoginController::class, 'logout'])->name('logout.user'); /
 
 Route::get('/show/{id}', [AdminController::class,'show']);
 
-Route::get("/create", [Eleve_controller::class, 'create'])->name('student.create'); // route pour afficher le formulaire de création d'un nouvel élève
+Route::get("/student.create", [Eleve_controller::class, 'create']); // route pour afficher le formulaire de création d'un nouvel élève
 
 
