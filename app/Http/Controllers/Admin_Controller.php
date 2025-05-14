@@ -41,19 +41,20 @@ class Admin_Controller extends Controller
             'nom' => 'required|string|max:255',
             'prénom' => 'nullable|string|max:255',
             'date_naissance' => 'required|date',
+            'lieu_naissance' => 'required|string|max:255',
             'sexe' => 'required|in:Homme,Femme',
             'tel1' => 'required|numeric',
             'tel2' => 'nullable|numeric',
             'statut' => 'required|string|max:255',
             'addresse' => 'required|string|max:255',
             'date_service' => 'required|date',
-            'email' => 'required|email|unique',
+            'email' => 'required|email|unique:admin',
             'password' => 'required|string|min:8|confirmed',
             'profil' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         // Gestion du fichier
-        $profilPath = $request->file('profil')->store(asset('storage/images'));
+        $profilPath = $request->file('profil')->store(asset('storage/images/admin'));
         $data['profil'] = $profilPath;
 
         // Génération matricule

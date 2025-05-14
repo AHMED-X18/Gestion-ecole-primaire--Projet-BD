@@ -11,8 +11,8 @@ class Eleve_controller extends Controller
     // Affiche la liste des élèves
     public function index()
     {
-        $eleves = Eleve::all(); // Changed variable name for clarity
-        return view('eleves.index', compact('eleves'));
+        $eleve = Eleve::all();
+        return view('ListeEleve', compact('eleve'));
     }
 
     // Affiche le formulaire de création d'un nouvel élève
@@ -25,50 +25,49 @@ class Eleve_controller extends Controller
     public function store(Request $request)
     {
         // Validation des données
-        $request->validate([
-            'matricule' => 'required|string|max:10',
+        try{
+        $data=$request->validate([
             'nom' => 'required|string|max:255',
-            'prénom' => 'required|string|max:255',
+            'prénom' => 'nullable|string|max:255',
             'date_naissance' => 'required|date',
+            'lieu_naissance' => 'required|string|max:255',
             'sexe' => 'required|string|max:10',
             'nom_tuteur' => 'required|string',
             'tel1_tuteur' => 'required|integer',
-            'tel2_tuteur' => 'required|integer',
+            'tel2_tuteur' => 'nullable|integer',
             'statut' => 'required|string|max:255',
             'addresse' => 'required|string|max:255',
-            'email_tuteur' => 'required|string|email|max:255|unique:eleves',
+            'email_tuteur' => 'required|string|email|max:255',
             'id_classe' => 'required|string|max:10',
             'profil' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Gestion du fichier profil
-        $profilPath = $request->file('profil')->store('profil_images');
+        // Gestion du fichier
+        $profilPath = $request->file('profil')->store(asset('storage/images/eleve'));
+        $data['profil'] = $profilPath;
+
+        // Génération matricule
+        $currentYear = \Carbon\Carbon::now()->year;
+        $matricule=($currentYear - 2000) . 'S' . rand(100, 1000);
+
+        $data=array_merge(["matricule"=>$matricule], $data);
+
 
         // Création de l'élève
-        Eleve::create([
-            'matricule' => $request->matricule,
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'date_naissance' => $request->date_naissance,
-            'sexe' => $request->sexe,
-            'nom_tuteur' => $request->nom_tuteur,
-            'tel1_tuteur' => $request->tel1_tuteur,
-            'tel2_tuteur' => $request->tel2_tuteur,
-            'statut' => $request->statut,
-            'addresse' => $request->addresse,
-            'email_tuteur' => $request->email_tuteur,
-            'id_classe' => $request->id_classe,
-            'profil' => $profilPath, // Enregistrement du chemin du profil
-        ]);
+        Eleve::create($data);
 
-        return redirect()->route('eleves.index')->with('success', 'Élève créé avec succès !');
+        return redirect()->back()->with('success', 'Élève créé avec succès !');
+    }catch(\Exception $e){
+            dd($e);
+            return back()->withInput()->withErrors(['error' => 'Erreur de sauvegarde : ' . $e->getMessage()]);
+    }
     }
 
     // Affiche un élève spécifique
     public function show($id)
     {
-        $eleve = Eleve::findOrFail($id);
-        return view('eleves.show', compact('eleve'));
+        $eleve = Eleve::where('matricule', $id)->firstOrFail();
+        return view('InformationEleve', compact('eleve'));
     }
 
     // Affiche le formulaire d'édition pour un élève existant

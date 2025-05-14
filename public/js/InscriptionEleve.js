@@ -1,4 +1,4 @@
-// Preview de l'image uploadée
+// Preview de l'image
 document.getElementById('profil').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (file) {
@@ -10,30 +10,48 @@ document.getElementById('profil').addEventListener('change', function(e) {
     }
 });
 
-// Gestion du formulaire
+// Validation avant soumission
 document.getElementById('registrationForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // Validation
+    const requiredFields = {
+        'nom': 'input',
+        'prenom': 'input', 
+        'date_naissance': 'input',
+        'sexe': 'radio',
+        'statut': 'select',
+        'nom_tuteur': 'input',
+        'tel1_tuteur': 'input',
+        'adresse': 'input',
+        'id_classe': 'select',
+        'terms': 'checkbox'
+    };
 
-    // Validation simple
-    const requiredFields = ['matricule', 'nom', 'prenom', 'date_naissance', 'sexe', 'statut', 'nom_tuteur', 'tel1_tuteur', 'adresse', 'id_classe'];
     let isValid = true;
 
-    requiredFields.forEach(field => {
-        const element = document.getElementById(field) || document.querySelector(`input[name="${field}"]:checked`);
-        if (!element || !element.value) {
-            isValid = false;
-            element.classList.add('border-red-500');
-        } else {
-            element.classList.remove('border-red-500');
+    for (const [field, type] of Object.entries(requiredFields)) {
+        let element;
+        switch(type) {
+            case 'radio':
+                element = document.querySelector(`input[name="${field}"]:checked`);
+                break;
+            case 'checkbox':
+                element = document.getElementById(field);
+                isValid = element.checked && isValid;
+                break;
+            default:
+                element = document.getElementById(field);
         }
-    });
 
-    if (!isValid) {
-        alert('Veuillez remplir tous les champs obligatoires marqués d\'un *');
-        return;
+        if ((!element || !element.value) && type !== 'checkbox') {
+            isValid = false;
+            element?.classList.add('border-red-500');
+        }
     }
 
-    // Ici, vous pourriez envoyer les données au serveur
-    alert('Formulaire soumis avec succès!');
-    // this.reset();
+    if (!isValid) {
+        e.preventDefault();
+        alert('Veuillez remplir tous les champs obligatoires');
+    }
+    
+    // Si validé, le formulaire se soumet normalement
 });

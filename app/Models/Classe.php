@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Classe extends Model{
     protected $table = 'classe';
-    protected $fillable = ['id_classe', 'nom', 'niveau', 'effectif', 'section'];
+    protected $fillable = ['id_classe', 'niveau', 'effectif', 'section'];
 
     public function eleve(){
         return $this->belongsTo(Eleve::class);

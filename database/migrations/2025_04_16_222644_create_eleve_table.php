@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom', 20)->nullable();
             $table->string('prénom', 20)->nullable();
             $table->date('date_naissance')->nullable();
+            $table->date('lieu_naissance')->nullable();
             $table->string('sexe', 10)->nullable();
             $table->string('nom_tuteur', 40)->nullable();
             $table->integer('tel1_tuteur')->nullable();

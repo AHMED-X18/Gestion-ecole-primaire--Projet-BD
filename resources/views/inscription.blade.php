@@ -42,6 +42,14 @@
             </div>
 
             <div class="form-group">
+                <label for="lieu_naissance"><i class="fas fa-map-marker-alt mr-1"></i> Lieu_naissance</label>
+                <input type="text" id="lieu_naisance" name="lieu_naissance" required placeholder="Votre lieu de naissance">
+                <div class="input-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label><i class="fas fa-venus-mars mr-1"></i> Sexe</label>
                 <div class="radio-group">
                     <label><input type="radio" name="sexe" value="Homme" required> <i class="fas fa-male"></i> Homme</label>

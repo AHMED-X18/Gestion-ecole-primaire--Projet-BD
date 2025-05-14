@@ -18,9 +18,9 @@
                         <div class="w-16 h-1 bg-green-500"></div>
                     </div>
 
-                    <form id="registrationForm" class="mt-8 space-y-6">
+                    <form id="registrationForm" class="mt-8 space-y-6" method="POST" action="{{ route('student.store') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
                             <!-- Nom -->
                             <div>
                                 <label for="nom" class="block text-sm font-medium text-gray-700">Nom*</label>
@@ -31,7 +31,7 @@
                             <!-- Prénom -->
                             <div>
                                 <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom*</label>
-                                <input id="prenom" name="prenom" type="text" required
+                                <input id="prenom" name="prénom" type="text" required
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
                             </div>
 
@@ -42,17 +42,24 @@
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
                             </div>
 
+                             <!-- Lieu de naissance -->
+                             <div>
+                                <label for="lieu_naissance" class="block text-sm font-medium text-gray-700">Lieu de naissance*</label>
+                                <input id="lieu_naissance" name="lieu_naissance" type="text" required
+                                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500">
+                            </div>
+
                             <!-- Sexe -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700">Sexe*</label>
                                 <div class="mt-1 flex space-x-4">
                                     <div class="flex items-center">
-                                        <input id="sexe_m" name="sexe" type="radio" value="M" required
+                                        <input id="sexe_m" name="sexe" type="radio" value="Masculin" required
                                             class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300">
                                         <label for="sexe_m" class="ml-2 block text-sm text-gray-700">Masculin</label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="sexe_f" name="sexe" type="radio" value="F"
+                                        <input id="sexe_f" name="sexe" type="radio" value="Féminin"
                                             class="focus:ring-green-500 h-4 w-4 text-green-600 border-gray-300">
                                         <label for="sexe_f" class="ml-2 block text-sm text-gray-700">Féminin</label>
                                     </div>
@@ -101,7 +108,7 @@
                             <!-- Adresse -->
                             <div>
                                 <label for="adresse" class="block text-sm font-medium text-gray-700">Adresse*</label>
-                                <input id="adresse" name="adresse" rows="2" type="text" required
+                                <input id="adresse" name="addresse" rows="2" type="text" required
                                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500"></input>
                             </div>
 

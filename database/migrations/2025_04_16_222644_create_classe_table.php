@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('classe', function (Blueprint $table) {
             $table->string('id_classe', 20)->primary();
-            $table->string('nom', 20)->nullable();
             $table->string('niveau', 20)->nullable();
             $table->integer('effectif')->nullable();
             $table->string('section', 20)->nullable();

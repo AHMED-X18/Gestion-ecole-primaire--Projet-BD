@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin_Controller as AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Eleve_controller;
+use App\Http\Controllers\Classe_controller;
 
 $admin=session('admin') ? session('admin') : null;
 
@@ -27,5 +28,11 @@ Route::get('/logout',[LoginController::class, 'logout'])->name('logout.user'); /
 Route::get('/show/{id}', [AdminController::class,'show']);
 
 Route::get("/student.create", [Eleve_controller::class, 'create']); // route pour afficher le formulaire de création d'un nouvel élève
+
+Route::get("/student.index", [Classe_controller::class,"index"]); //route pour afficher la liste des eleves
+
+Route::get("/student.info/{matricule}", [Eleve_controller::class,'show'])->name('student.info'); // route pour trouver un eleve spécifique par son id
+
+Route::post("/student.store", [Eleve_controller::class,'store'])->name('student.store'); // route pour enregistrer un nouvel élève
 
 

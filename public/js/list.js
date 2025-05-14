@@ -1,7 +1,7 @@
 const appRoutes = {
     students: {
         create: "/student.create",
-        list: '{{ route("students.index") }}',
+        list: '/student.index',
         classes: '{{ route("classes.index") }}',
         bulletins: '{{ route("bulletins.index") }}',
         schedule: '{{ route("schedules.index") }}',

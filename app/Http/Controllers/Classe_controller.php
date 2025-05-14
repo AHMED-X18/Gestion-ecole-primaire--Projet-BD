@@ -5,39 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Classe;
+use App\Models\Eleve;
 
 class Classe_Controller extends Controller
 {
     // Affiche la liste des salles de classe
     public function index()
-    {
-        $classes = Classe::all(); // Changed variable name for consistency
-        return view('classes.index', compact('classes'));
-    }
+{
+    $sections = [
+        'franco' => Classe::with('eleve')->where('section', 'francophone')->get(),
+        'anglo' => Classe::with('eleve')->where('section', 'anglophone')->get()
+    ];
 
-    // Affiche le formulaire de création d'une nouvelle classe
-    public function create()
-    {
-        return view('classes.create');
-    }
+      // Créer une variable pour les élèves par classe
+      $eleves = [];
+      foreach ($sections as $section => $classes) {
+          foreach ($classes as $classe) {
+              $eleves[$section][$classe->id_classe] = Eleve::where('id_classe', $classe->id_classe)
+              ->get(); 
+          }
+      }
 
-    // Enregistre une nouvelle classe
-    public function store(Request $request)
-    {
-        // Validation des données
-        $request->validate([
-            'id_classe' => 'required|string|max:10',
-            'nom' => 'required|string|max:255',
-            'niveau' => 'required|string|max:255',
-            'effectif' => 'required|integer',
-            'section' => 'required|string|max:255',
-        ]);
-
-        // Création de la classe
-        Classe::create($request->only(['id_classe', 'nom', 'niveau', 'effectif', 'section']));
-
-        return redirect()->route('classes.index')->with('success', 'Classe créée avec succès !');
-    }
+    return view('ListeEleve', compact('sections','eleves'));
+}
 
     // Affiche une classe spécifique
     public function show($id)
@@ -59,7 +49,6 @@ class Classe_Controller extends Controller
         // Validation des données
         $request->validate([
             'id_classe' => 'required|string|max:10',
-            'nom' => 'required|string|max:255',
             'niveau' => 'required|string|max:255',
             'effectif' => 'required|integer',
             'section' => 'required|string|max:255',
@@ -68,17 +57,8 @@ class Classe_Controller extends Controller
         $classe = Classe::findOrFail($id);
 
         // Mise à jour des données
-        $classe->update($request->only(['id_classe', 'nom', 'niveau', 'effectif', 'section']));
+        $classe->update($request->only(['id_classe', 'niveau', 'effectif', 'section']));
 
         return redirect()->route('classes.index')->with('success', 'Classe mise à jour avec succès !');
-    }
-
-    // Supprime une classe
-    public function destroy($id)
-    {
-        $classe = Classe::findOrFail($id);
-        $classe->delete();
-
-        return redirect()->route('classes.index')->with('success', 'Classe supprimée avec succès !');
     }
 }

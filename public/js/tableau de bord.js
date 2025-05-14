@@ -22,11 +22,10 @@ function showOptions(category) {
             title = 'Options pour les Élèves';
             options = [
                 {icon: 'user-plus', text: 'Inscrire un nouvel élève', routeKey:'create', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'users', text: 'Liste des élèves', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'book', text: 'Gestion des classes', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'file-alt', text: 'Bulletins scolaires', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'calendar-alt', text: 'Emploi du temps', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'chart-line', text: 'Statistiques scolaires', color: 'bg-blue-100 text-blue-600'},
+                {icon: 'users', text: 'Liste des élèves', routeKey:'list', color: 'bg-blue-100 text-blue-600'},
+                {icon: 'file-alt', text: 'Gestion des notes', color: 'bg-blue-100 text-blue-600'},
+                {icon: 'calendar-alt', text: 'Emploi du temps', color: 'bg-blue-100 text-blue-600'}
+
             ];
             break;
         case 'teachers':
@@ -45,7 +44,7 @@ function showOptions(category) {
                 {icon: 'file-invoice-dollar', text: 'Gestion de la comptabilité', color: 'bg-green-100 text-green-600'},
                 {icon: 'envelope', text: 'Communication avec les parents', color: 'bg-green-100 text-green-600'},
                 {icon: 'archive', text: 'Gestion des archives', color: 'bg-green-100 text-green-600'},
-                {icon: 'building', text: 'Gestion des locaux', color: 'bg-green-100 text-green-600'},
+                {icon: 'building', text: 'Gestion des locaux', color: 'bg-green-100 text-green-600'}
             ];
             break;
         case 'maintenance':

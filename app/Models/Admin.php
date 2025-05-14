@@ -9,6 +9,6 @@ use Illuminate\Foundation\Auth\User;
 
 class Admin extends User{
     protected $table = 'admin';
-    protected $fillable = ['id_admin', 'nom', 'prénom', 'date_naissance', 'sexe', 'tel1', 'tel2', 'statut', 'addresse', 'date_service', 'email', 'password','profil'];
+    protected $fillable = ['id_admin', 'nom', 'prénom', 'date_naissance','lieu_naissance', 'sexe', 'tel1', 'tel2', 'statut', 'addresse', 'date_service', 'email', 'password','profil'];
 
 }
