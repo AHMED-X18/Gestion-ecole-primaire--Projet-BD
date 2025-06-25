@@ -23,28 +23,28 @@ function showOptions(category) {
             options = [
                 {icon: 'user-plus', text: 'Inscrire un nouvel élève', routeKey:'create', color: 'bg-blue-100 text-blue-600'},
                 {icon: 'users', text: 'Liste des élèves', routeKey:'list', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'file-alt', text: 'Gestion des notes', color: 'bg-blue-100 text-blue-600'},
-                {icon: 'calendar-alt', text: 'Emploi du temps', color: 'bg-blue-100 text-blue-600'}
+                {icon: 'file-alt', text: 'Gestion des notes',routeKey:'bulletins', color: 'bg-blue-100 text-blue-600'},
+                {icon: 'calendar-alt', text: 'Emploi du temps', routeKey:'schedule', color: 'bg-blue-100 text-blue-600'}
 
             ];
             break;
-        case 'teachers':
-            title = 'Options pour les Enseignants';
-            options = [
-                {icon: 'user-plus', text: 'Ajouter un enseignant', color: 'bg-purple-100 text-purple-600'},
-                {icon: 'users', text: 'Liste des enseignants', color: 'bg-purple-100 text-purple-600'},
-                {icon: 'calendar-alt', text: 'Planning des cours', color: 'bg-purple-100 text-purple-600'},
-            ];
+            case 'teachers':
+                title = 'Options pour les Enseignants';
+                options = [
+                    {icon: 'user-plus', text: 'Ajouter un enseignant',routeKey:'create', color: 'bg-purple-100 text-purple-600'},
+                    {icon: 'users', text: 'Liste des enseignants',routeKey:'list', color: 'bg-purple-100 text-purple-600'},
+                    {icon: 'calendar-alt', text: 'Planning des cours', routeKey:'schedule', color: 'bg-purple-100 text-purple-600'},
+                ];
             break;
         case 'admin':
             title = 'Options pour le Personnel Administratif';
             options = [
-                {icon: 'user-plus', text: 'Ajouter un membre', color: 'bg-green-100 text-green-600'},
-                {icon: 'users', text: 'Liste du personnel', color: 'bg-green-100 text-green-600'},
-                {icon: 'file-invoice-dollar', text: 'Gestion de la comptabilité', color: 'bg-green-100 text-green-600'},
-                {icon: 'envelope', text: 'Communication avec les parents', color: 'bg-green-100 text-green-600'},
-                {icon: 'archive', text: 'Gestion des archives', color: 'bg-green-100 text-green-600'},
-                {icon: 'building', text: 'Gestion des locaux', color: 'bg-green-100 text-green-600'}
+                {icon: 'user-plus', text: 'Ajouter un membre', routeKey: 'create', color: 'bg-red-100 text-red-600' },
+                {icon: 'users', text: 'Liste du personnel', color: 'bg-red-100 text-red-600'},
+                {icon: 'file-invoice-dollar', text: 'Gestion de la comptabilité', color: 'bg-red-100 text-red-600'},
+                {icon: 'envelope', text: 'Communication avec les parents', color: 'bg-red-100 text-red-600'},
+                {icon: 'archive', text: 'Gestion des archives', color: 'bg-red-100 text-red-600'},
+                {icon: 'building', text: 'Gestion des locaux', color: 'bg-red-100 text-red-600'}
             ];
             break;
         case 'maintenance':
@@ -53,9 +53,7 @@ function showOptions(category) {
                 {icon: 'user-plus', text: 'Ajouter un membre', color: 'bg-yellow-100 text-yellow-600'},
                 {icon: 'users', text: 'Liste du personnel', color: 'bg-yellow-100 text-yellow-600'},
                 {icon: 'calendar-alt', text: 'Planning des équipes', color: 'bg-yellow-100 text-yellow-600'},
-                {icon: 'clipboard-list', text: 'Tâches à effectuer', color: 'bg-yellow-100 text-yellow-600'},
-                {icon: 'wrench', text: 'Maintenance des équipements', color: 'bg-yellow-100 text-yellow-600'},
-                {icon: 'broom', text: 'Nettoyage des locaux', color: 'bg-yellow-100 text-yellow-600'},
+                {icon: 'wrench', text: 'Gestion du matériel', color: 'bg-yellow-100 text-yellow-600'}
             ];
             break;
     }

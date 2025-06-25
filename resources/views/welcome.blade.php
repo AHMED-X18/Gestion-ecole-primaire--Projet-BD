@@ -15,10 +15,10 @@
             <div class="flex justify-between">
                 <div class="flex space-x-7">
                     <div>
-                        <a href="#" class="flex items-center py-4 px-2">
-                            <img src="https://via.placeholder.com/50" alt="Logo" class="h-10 w-10 mr-2">
-                            <span class="font-semibold text-green-600 text-lg">Les Étoiles de l'Avenir</span>
-                        </a>
+                    
+                        <img src="/images/logo.png" alt="Logo" class="h-20 w-20 mr-2">
+                        <span class="font-semibold text-green-600 text-lg">Les Étoiles de l'Avenir</span>
+            
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
@@ -161,26 +161,26 @@
             <h2 class="text-3xl font-bold text-center text-green-600 mb-12">Notre Équipe Pédagogique</h2>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="teacher-card bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Directrice" class="w-full h-64 object-cover">
+                    <img src="/images/enseignant/pp_RAISSA.jpg" alt="Directrice" class="w-full h-64 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Mme Ngoa Éliane</h3>
+                        <h3 class="text-xl font-semibold text-gray-800">Mme WOKMENI Raissa</h3>
                         <p class="text-green-600 mb-2">Directrice</p>
                         <p class="text-gray-600">Diplômée en Sciences de l'Éducation avec plus de 20 ans d'expérience dans l'enseignement primaire.</p>
                     </div>
                 </div>
                 <div class="teacher-card bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out">
-                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Enseignant" class="w-full h-64 object-cover">
+                    <img src="/images/enseignant/pp_POUANSI.jpg" alt="Enseignant" class="w-full h-80 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">M. Tchoupo Armand</h3>
-                        <p class="text-green-600 mb-2">Professeur de Mathématiques</p>
+                        <h3 class="text-xl font-semibold text-gray-800">M. POUANSI Ismael</h3>
+                        <p class="text-green-600 mb-2">Maitre du CM2</p>
                         <p class="text-gray-600">Spécialiste des méthodes pédagogiques innovantes pour rendre les mathématiques accessibles à tous.</p>
                     </div>
                 </div>
                 <div class="teacher-card bg-white rounded-lg shadow-md overflow-hidden transition duration-500 ease-in-out">
-                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Enseignante" class="w-full h-64 object-cover">
+                    <img src="/images/enseignant/pp_BRIDGET.jpg" alt="Enseignante" class="w-full h-80 object-cover">
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Mme Nkoulou Sylvie</h3>
-                        <p class="text-green-600 mb-2">Professeur de Français</p>
+                        <h3 class="text-xl font-semibold text-gray-800">Mme ATSA Bridget</h3>
+                        <p class="text-green-600 mb-2">Maitresse du CP</p>
                         <p class="text-gray-600">Passionnée de littérature jeunesse et experte en techniques d'apprentissage de la lecture.</p>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                 <div class="stats-card bg-white p-6 rounded-lg shadow-md text-center">
                     <div class="text-green-600 text-5xl font-bold mb-2">98%</div>
                     <h3 class="text-lg font-semibold mb-2">Taux de réussite</h3>
-                    <p class="text-gray-600">Au CEP 2023</p>
+                    <p class="text-gray-600">Au CEP 2024</p>
                 </div>
                 <div class="stats-card bg-white p-6 rounded-lg shadow-md text-center">
                     <div class="text-green-600 text-5xl font-bold mb-2">85%</div>
@@ -212,12 +212,6 @@
                     <div class="text-green-600 text-5xl font-bold mb-2">15</div>
                     <h3 class="text-lg font-semibold mb-2">Prix remportés</h3>
                     <p class="text-gray-600">Concours nationaux</p>
-                </div>
-            </div>
-            <div class="mt-12 bg-white p-6 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-green-600 mb-4">Évolution des résultats</h3>
-                <div class="h-64">
-                    <canvas id="resultsChart"></canvas>
                 </div>
             </div>
         </div>
@@ -312,7 +306,7 @@
             <div class="flex flex-col md:flex-row justify-between">
                 <div class="mb-6 md:mb-0">
                     <h3 class="text-xl font-bold mb-4">Les Étoiles de l'Avenir</h3>
-                    <p class="max-w-xs">École primaire d'excellence à Yaoundé, formant les leaders de demain depuis 2005.</p>
+                    <p class="max-w-xs">École primaire d'excellence à Yaoundé, formant les leaders de demain depuis 2015.</p>
                 </div>
                 <div class="mb-6 md:mb-0">
                     <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>

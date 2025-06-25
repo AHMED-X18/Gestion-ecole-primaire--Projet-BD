@@ -11,56 +11,54 @@ class Enseignant_controller extends Controller
     // Affiche la liste des enseignants
     public function index()
     {
-        $enseignants = Enseignant::all(); // Changed variable name for clarity
-        return view('enseignants.index', compact('enseignants'));
+        $enseignants = Enseignant::all();
+        return view('listeenseignant', compact('enseignants'));
     }
 
     // Affiche le formulaire de création d'un nouvel enseignant
     public function create()
     {
-        return view('enseignants.create');
+        return view('ajouterenseignant');
     }
 
     // Enregistre un nouvel enseignant
     public function store(Request $request)
     {
-        // Validation des données
-        $request->validate([
-            'id_maitre' => 'required|string|max:10',
+        try{
+        // validation des données
+        $data=$request->validate([
             'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
+            'prénom' => 'nullable|string|max:255',
             'date_naissance' => 'required|date',
             'sexe' => 'required|string|max:10',
             'tel1' => 'required|integer',
-            'tel2' => 'required|integer',
-            'statut' => 'required|string|max:255',
+            'tel2' => 'nullable|integer',
             'addresse' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:enseignants',
+            'email' => 'required|string|email|max:255|unique:enseignant',
             'id_classe' => 'required|string|max:10',
             'profil' => 'required|file|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Gestion du fichier profil
-        $profilPath = $request->file('profil')->store('profil_images');
+         // Gestion du fichier
+         $profilPath = $request->file('profil')->store('enseignant');
+         $data['profil'] = $profilPath;
 
-        // Création de l'enseignant
-        Enseignant::create([
-            'id_maitre' => $request->id_maitre,
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'date_naissance' => $request->date_naissance,
-            'sexe' => $request->sexe,
-            'tel1' => $request->tel1,
-            'tel2' => $request->tel2,
-            'statut' => $request->statut,
-            'addresse' => $request->addresse,
-            'email' => $request->email,
-            'id_classe' => $request->id_classe,
-            'profil' => $profilPath, // Enregistrement du chemin du profil
-        ]);
+         // Génération matricule
+         $currentYear = \Carbon\Carbon::now()->year;
+         $matricule=($currentYear - 2000) . 'T' . rand(100, 1000);
 
-        return redirect()->route('enseignants.index')->with('success', 'Enseignant créé avec succès !');
+         $data=array_merge(["id_maitre"=>$matricule], $data);
+
+         // Création de l'élève
+         Enseignant::create($data);
+
+         return redirect()->back()->with('success', 'Élève créé avec succès !');
+     } catch (\Exception $e){
+        dd($e);
+     }
     }
+
+
 
     // Affiche un enseignant spécifique
     public function show($id)

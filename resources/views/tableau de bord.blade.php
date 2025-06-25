@@ -25,7 +25,7 @@
                 <div class="mb-8">
                     <div class="flex items-center mb-4 p-2 bg-indigo-800 rounded-lg">
                         @if (session('admin'))
-                        <img srcset="{{ asset(session('admin')->profil) }}"
+                        <img src="{{ "images/".session('admin')->profil }}"
                              class="w-10 h-10 rounded-full mr-3">
                         @else
                          <img src="https://ui-avatars.com/api/?name=Admin+User&background=7e22ce&color=fff"
@@ -51,14 +51,7 @@
                         <i class="fas fa-calendar-alt mr-3"></i>
                         <span class="sidebar-text">Calendrier</span>
                     </a>
-                    <a href="#" class="flex items-center p-3 rounded-lg text-indigo-300 hover:bg-indigo-800 hover:text-white mb-2">
-                        <i class="fas fa-chart-bar mr-3"></i>
-                        <span class="sidebar-text">Statistiques</span>
-                    </a>
-                    <a href="#" class="flex items-center p-3 rounded-lg text-indigo-300 hover:bg-indigo-800 hover:text-white mb-2">
-                        <i class="fas fa-cog mr-3"></i>
-                        <span class="sidebar-text">Paramètres</span>
-                    </a>
+
                 </nav>
             </div>
             <div class="p-4 border-t border-indigo-800">
@@ -155,7 +148,7 @@
                     <div class="card-float bg-white rounded-2xl overflow-hidden shadow-xl transform transition hover:shadow-2xl hover:-translate-y-1 cursor-pointer"
                          onclick="showOptions('admin')">
                         <div class="relative">
-                            <div class="h-40 bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center">
+                            <div class="h-40 bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center">
                                 <i class="fas fa-user-tie text-white text-6xl opacity-70"></i>
                             </div>
                         </div>
@@ -163,7 +156,7 @@
                             <h3 class="text-xl font-bold text-gray-800 mb-2">Personnel Administratif</h3>
                             <p class="text-gray-600">Gestion des secrétaires, comptables et autres membres administratifs.</p>
                             <div class="mt-4 flex justify-end">
-                                <button class="text-green-600 hover:text-green-800">
+                                <button class="text-red-600 hover:text-red-800">
                                     <i class="fas fa-chevron-right text-lg"></i>
                                 </button>
                             </div>

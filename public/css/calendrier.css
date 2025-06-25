@@ -1,0 +1,25 @@
+.calendar-day:hover {
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+.selected-day {
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #3b82f6;
+}
+.today {
+    background-color: #3b82f6;
+    color: white;
+    font-weight: bold;
+}
+.other-month {
+    opacity: 0.5;
+}
+.calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

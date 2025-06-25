@@ -30,9 +30,14 @@ return [
 
     'disks' => [
 
+        'custom' =>[
+            'driver'=>'local',
+            'root'=>public_path('images'),
+        ],
+
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
+            'root' => storage_path('public/image'),
             'serve' => true,
             'throw' => false,
             'report' => false,
@@ -43,8 +48,6 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
-            'throw' => false,
-            'report' => false,
         ],
 
         's3' => [

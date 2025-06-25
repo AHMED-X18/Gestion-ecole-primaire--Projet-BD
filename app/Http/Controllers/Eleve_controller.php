@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Eleve;
+use App\Models\Classe;
+use App\Models\Matiere;
 
 class Eleve_controller extends Controller
 {
@@ -43,8 +45,8 @@ class Eleve_controller extends Controller
         ]);
 
         // Gestion du fichier
-        $profilPath = $request->file('profil')->store(asset('storage/images/eleve'));
-        $data['profil'] = $profilPath;
+        $profilPath = $request->file('profil')->store('eleve');
+        $data['profil']=$profilPath;
 
         // Génération matricule
         $currentYear = \Carbon\Carbon::now()->year;
@@ -68,6 +70,10 @@ class Eleve_controller extends Controller
     {
         $eleve = Eleve::where('matricule', $id)->firstOrFail();
         return view('InformationEleve', compact('eleve'));
+    }
+
+    public function schedule(){
+        return view('emploidetemps');
     }
 
     // Affiche le formulaire d'édition pour un élève existant
@@ -121,6 +127,27 @@ class Eleve_controller extends Controller
         $eleve = Eleve::findOrFail($id);
         $eleve->delete();
 
-        return redirect()->route('eleves.index')->with('success', 'Élève supprimé avec succès !');
+        return redirect()->route('/student.index')->with('success', 'Élève supprimé avec succès !');
+    }
+
+    public function afficherNotes(){
+
+        return view('gestionNotes');
+    }
+
+    public function InsererNotes()
+    {
+        $classes = Classe::with('eleve')->get(); // Charger les classes avec leurs élèves
+        $studentsData = [];
+        $eleve = Eleve::with(())
+
+        foreach ($classes as $classe) {
+            $studentsData[$classe->id_classe] = $classe->; // Utiliser la relation 'eleves'
+        }
+        dd($studentsData);
+        $matieres = Matiere::all(); // Récupérer les matières
+        return view('InsertionNotes', compact('classes', 'studentsData', 'matieres'));
     }
 }
+
+

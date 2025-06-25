@@ -22,7 +22,7 @@ class Classe_Controller extends Controller
       foreach ($sections as $section => $classes) {
           foreach ($classes as $classe) {
               $eleves[$section][$classe->id_classe] = Eleve::where('id_classe', $classe->id_classe)
-              ->get(); 
+              ->get();
           }
       }
 

@@ -5,84 +5,50 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Matiere;
+use App\Models\Classe;
 
 class Matiere_controller extends Controller
 {
     // Affiche la liste des matières
-    public function index()
+    public function index(Request $request)
     {
-        $matieres = Matiere::all(); // Changed variable name for clarity
-        return view('matieres.index', compact('matieres'));
-    }
+        // Récupère toutes les classes
+        $classes = Classe::orderBy('niveau')->orderBy('id_classe')->get();
 
-    // Affiche le formulaire de création d'une nouvelle matière
-    public function create()
-    {
-        return view('matieres.create');
-    }
+        $selectedClasse = null;
+        $matieres = collect();
+        $timetableData = session('timetableData', []);
 
-    // Enregistre une nouvelle matière
-    public function store(Request $request)
-    {
-        // Validation des données
-        $request->validate([
-            'id_matiere' => 'required|string|max:10',
-            'coefficient' => 'required|integer',
-            'nom' => 'required|string|max:255',
+        // Si une classe est sélectionnée
+        if ($request->has('id_classe') && $request->id_classe) {
+            $selectedClasse = Classe::where('id_classe', $request->id_classe)->first();
+
+            if ($selectedClasse) {
+                // Récupère les matières correspondantes
+                $matieres = Matiere::where('niveau', $selectedClasse->niveau)
+                    ->where('section', $selectedClasse->section)
+                    ->get();
+            }
+        }
+
+        return view('emploidetemps', [
+            'classes' => $classes,
+            'selectedClasse' => $selectedClasse,
+            'matieres' => $matieres,
+            'timetableData' => $timetableData
         ]);
-
-        // Création de la matière
-        Matiere::create([
-            'id_matiere' => $request->id_matiere,
-            'coefficient' => $request->coefficient,
-            'nom' => $request->nom,
-        ]);
-
-        return redirect()->route('matieres.index')->with('success', 'Matière créée avec succès !');
     }
 
-    // Affiche une matière spécifique
-    public function show($id)
+    public function saveTimetable(Request $request)
     {
-        $matiere = Matiere::findOrFail($id);
-        return view('matieres.show', compact('matiere'));
+        $request->session()->put('timetableData', $request->timetable);
+        return response()->json(['status' => 'success']);
     }
 
-    // Affiche le formulaire d'édition pour une matière existante
-    public function edit($id)
+    public function resetTimetable(Request $request)
     {
-        $matiere = Matiere::findOrFail($id);
-        return view('matieres.edit', compact('matiere'));
+        $request->session()->forget('timetableData');
+        return back();
     }
 
-    // Met à jour une matière existante
-    public function update(Request $request, $id)
-    {
-        // Validation des données
-        $request->validate([
-            'id_matiere' => 'required|string|max:10',
-            'coefficient' => 'required|integer',
-            'nom' => 'required|string|max:255',
-        ]);
-
-        $matiere = Matiere::findOrFail($id);
-
-        // Mise à jour des données
-        $matiere->id_matiere = $request->id_matiere;
-        $matiere->coefficient = $request->coefficient;
-        $matiere->nom = $request->nom;
-
-        $matiere->save();
-
-        return redirect()->route('matieres.index')->with('success', 'Matière mise à jour avec succès !');
-    }
-
-    // Supprime une matière
-    public function destroy($id)
-    {
-        $matiere = Matiere::findOrFail($id);
-        $matiere->delete();
-
-        return redirect()->route('matieres.index')->with('success', 'Matière supprimée avec succès !');
-    }
 }

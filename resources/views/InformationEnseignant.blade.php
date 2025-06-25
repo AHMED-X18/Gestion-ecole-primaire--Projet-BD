@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informations Élève</title>
+    <title>Informations Enseignant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -31,32 +31,36 @@
             <div class="bg-blue-600 py-4 px-6">
                 <h1 class="text-2xl font-bold text-white flex items-center">
                     <i class="fas fa-user-graduate mr-3"></i>
-                    Informations Élève
+                    Informations Enseignant
                 </h1>
             </div>
 
             <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Informations de l'élève -->
+                <!-- Informations de l'enseignant -->
                 <div>
                     <h2 class="text-lg font-semibold text-blue-700 border-b pb-2">
-                        <i class="fas fa-info-circle mr-2"></i>Informations de l'élève
+                        <i class="fas fa-info-circle mr-2"></i>Informations de l'enseignant
                     </h2>
 
                     <div class="space-y-4 mt-4">
-                        <p><strong>Matricule:</strong> {{ $eleve->matricule }}</p>
-                        <p><strong>Nom:</strong> {{ $eleve->nom }}</p>
-                        <p><strong>Prénom:</strong> {{ $eleve->prénom }}</p>
-                        <p><strong>Date et lieu de naissance:</strong> {{ $eleve->date_naissance }} À {{$eleve->lieu_naissance}}</p>
-                        <p><strong>Sexe:</strong> {{ $eleve->sexe}}</p>
-                        <p><strong>Classe:</strong> {{ $eleve->id_classe }}</p>
-                        <p><strong>Statut:</strong> {{ $eleve->statut }}</p>
-                        <p><strong>Adresse:</strong> {{ $eleve->addresse }}</p>
+                        <p><strong>Matricule:</strong> {{ $enseignant->id_maitre }}</p>
+                        <p><strong>Nom:</strong> {{ $enseignant->nom }}</p>
+                        <p><strong>Prénom:</strong> {{ $enseignant->prenom }}</p>
+                        <p><strong>Date et lieu de naissance:</strong> {{ $enseignant->date_naissance }} À {{$enseignant->lieu_naissance}}</p>
+                        <p><strong>Sexe:</strong> {{ $enseignant->sexe}}</p>
+                        <p><strong>Numero de téléphone :</strong> {{ $enseignant->tel1}}</p>
+                        <p><strong>Numéro de téléphone :</strong> {{ $enseignant->tel2}}</p>
+                        <p><strong>Classe:</strong> {{ $enseignant->id_classe }}</p>
+                        <p><strong>Statut:</strong> {{ $enseignant->statut }}</p>
+                        <p><strong>Adresse:</strong> {{ $enseignant->addresse }}</p>
+                        <p><strong>Email:</strong> {{ $enseignant->email }}</p>
+                        <p><strong>Profil:</strong> {{ $enseignant->profil }}</p>
                     </div>
                 </div>
 
                 <!-- Section Photo de profil -->
                 <div class="flex justify-center">
-                    <img id="profilePreview" src="{{ asset("images/".$eleve->profil) }}" alt="Photo de profil" class="profile-show" width="300" height="300">
+                    <img id="profilePreview" src="{{ asset("images/".$enseignant->profil) }}" alt="Photo de profil" class="profile-show" width="300" height="300">
                 </div>
             </div>
 
@@ -65,27 +69,17 @@
                 <i class="fas fa-user-tie mr-2"></i>Informations du tuteur
             </h2>
 
-            <div class="px-6 space-y-4 mt-4">
-                <p><strong>Nom complet du tuteur:</strong> {{ $eleve->nom_tuteur }}</p>
-                <p><strong>Téléphone 1:</strong> {{ $eleve->tel1_tuteur }}</p>
-                <p><strong>Téléphone 2:</strong> {{ $eleve->tel2_tuteur }}</p>
-                <p><strong>Email du tuteur:</strong> {{ $eleve->email_tuteur }}</p>
-            </div>
+           
             <div class="px-6 space-y-8 pt-4 px-6">
                 <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
                     <i class="fas fa-user mr-2"></i> Modifier les informations
                 </button>
-                <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
-                    <i class="fas fa-folder-open mr-2"></i> Dossier d'inscription
-                </button>
-                 <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
-                    <i class="fas fa-folder-open mr-2"></i> Dossier d'examen
-                </button>
+               
 
             <!-- Boutons d'action -->
             <div class="flex justify-end space-x-4 pt-4 px-6">
                 <button onclick="window.location.href=" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center">
-                    <i class="fas fa-remove mr-2"></i> Supprimer cet élève
+                    <i class="fas fa-remove mr-2"></i> Supprimer cet enseignant
                 </button>
                 <button onclick="window.print()" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center">
                     <i class="fas fa-print mr-2"></i> Imprimer
@@ -96,12 +90,6 @@
             </div>
         </div>
     </div>
-    <script>
-        function logout(){
-            if (confirm("Êtes-vous sûr de vouloir supprimer cet élève ?")) {
-                window.location.href = "{{ route('deleteStudent', ['matricule' => $eleve->matricule]) }}'";
-            }
-        }
-    </script>
+
 </body>
 </html>

@@ -54,8 +54,8 @@ class Admin_Controller extends Controller
         ]);
 
         // Gestion du fichier
-        $profilPath = $request->file('profil')->store(asset('storage/images/admin'));
-        $data['profil'] = $profilPath;
+        $profilPath = $request->file('profil')->store('admin');
+        $data['profil']=$profilPath;
 
         // Génération matricule
         $dateServiceYear = \Carbon\Carbon::parse($data['date_service'])->year;
@@ -147,4 +147,6 @@ class Admin_Controller extends Controller
         return redirect()->route('administrateurs.index')->with('success', 'Administrateur supprimé avec succès !');
     }
 */
+
+
 }

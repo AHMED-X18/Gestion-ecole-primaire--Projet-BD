@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <img src="https://via.placeholder.com/80" alt="Logo école" class="h-16 w-16 rounded-full border-2 border-white">
+                    <img src="/images/logo.png" alt="Logo école" class="h-16 w-16 rounded-full border-2 border-white">
                 </div>
             </div>
         </div>
@@ -91,10 +91,10 @@
                         @foreach($sections['franco'] as $classe)
                             @if($classe->niveau == 'Maternelle')
                                 <div class="class-group">
-                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center" 
+                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center"
                                          onclick="toggleClassroom('classe-{{ $classe->id_classe }}')">
                                         <h4 class="font-semibold text-gray-700">
-                                            {{ $classe->id_classe }} 
+                                            {{ $classe->id_classe }}
                                         </h4>
                                         <i class="fas fa-chevron-down transition-transform duration-300" id="chevron-classe-{{ $classe->id_classe }}"></i>
                                     </div>
@@ -105,7 +105,7 @@
                                             @foreach($eleves['franco'][$classe->id_classe] as $eleve)
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
-                                                    <button onclick="window.location.href='{{ route('student.info', ['matricule' => $eleve->matricule]) }}'"
+                                                    <button data-matricule="{{ $eleve->matricule }}"
                                                             class="text-blue-600 hover:text-blue-800 transition-colors">
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>
@@ -127,10 +127,10 @@
                         @foreach($sections['franco'] as $classe)
                             @if($classe->niveau == 'Primaire')
                                 <div class="class-group">
-                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center" 
+                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center"
                                          onclick="toggleClassroom('classe-{{ $classe->id_classe }}')">
                                         <h4 class="font-semibold text-gray-700">
-                                            {{ $classe->id_classe }} 
+                                            {{ $classe->id_classe }}
                                         </h4>
                                         <i class="fas fa-chevron-down transition-transform duration-300" id="chevron-classe-{{ $classe->id_classe }}"></i>
                                     </div>
@@ -141,7 +141,7 @@
                                             @foreach($eleves['franco'][$classe->id_classe] as $eleve)
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
-                                                    <button onclick="window.location.href='{{ route('student.info', ['matricule' => $eleve->matricule]) }}'" 
+                                                    <button data-matricule="{{ $eleve->matricule }}"
                                                             class="text-blue-600 hover:text-blue-800 transition-colors">
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>
@@ -177,7 +177,7 @@
                         @foreach($sections['anglo'] as $classe)
                             @if($classe->niveau == 'Nursery')
                                 <div class="class-group">
-                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center" 
+                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center"
                                          onclick="toggleClassroom('classe-{{ $classe->id_classe }}')">
                                         <h4 class="font-semibold text-gray-700">
                                             {{ $classe->id_classe }}
@@ -191,7 +191,7 @@
                                             @foreach($eleves['anglo'][$classe->id_classe] as $eleve)
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
-                                                    <button onclick="window.location.href='{{ route('student.info', ['matricule' => $eleve->matricule]) }}'"
+                                                    <button data-matricule="{{ $eleve->matricule }}"
                                                             class="text-blue-600 hover:text-blue-800 transition-colors">
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>
@@ -213,10 +213,10 @@
                         @foreach($sections['anglo'] as $classe)
                             @if($classe->niveau == 'Primary')
                                 <div class="class-group">
-                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center" 
+                                    <div class="class-header cursor-pointer p-4 bg-gray-100 rounded-lg flex justify-between items-center"
                                          onclick="toggleClassroom('classe-{{ $classe->id_classe }}')">
                                         <h4 class="font-semibold text-gray-700">
-                                            {{ $classe->id_classe }} 
+                                            {{ $classe->id_classe }}
                                         </h4>
                                         <i class="fas fa-chevron-down transition-transform duration-300" id="chevron-classe-{{ $classe->id_classe }}"></i>
                                     </div>
@@ -227,7 +227,7 @@
                                             @foreach($eleves['anglo'][$classe->id_classe] as $eleve)
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
-                                                    <button onclick="window.location.href='{{ route('student.info', ['matricule' => $eleve->matricule]) }}'" 
+                                                    <button data-matricule="{{ $eleve->matricule }}"
                                                             class="text-blue-600 hover:text-blue-800 transition-colors">
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>
@@ -245,6 +245,13 @@
     </main>
 
     <script>
+        // Définir la route Laravel dans une variable globale
+        window.Laravel = {
+            routes: {
+                studentInfo: '{{ route("student.info", ["matricule" => ":matricule"]) }}'
+            }
+        };
+
         // Toggle section content
         function toggleSection(system) {
             const content = document.getElementById(`${system}-content`);
@@ -287,51 +294,52 @@
         });
 
         function performSearch(query) {
-    query = query.toLowerCase().trim();
-    const resultsContainer = document.getElementById('searchResults');
-    resultsContainer.innerHTML = ''; // Réinitialise les résultats
+            query = query.toLowerCase().trim();
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = ''; // Réinitialise les résultats
 
-    // Parcourt tous les élèves dans le DOM
-    document.querySelectorAll('.student-list > div').forEach(studentDiv => {
-        const studentName = studentDiv.querySelector('p').textContent.toLowerCase();
-        const studentId = studentDiv.querySelector('button').getAttribute('onclick').match(/\d+/)[0];
-        const classroom = studentDiv.closest('.class-group')
-                            .querySelector('.class-header h4').textContent
-                            .split(' (')[0];
+            // Parcourt tous les élèves dans le DOM
+            document.querySelectorAll('.student-list > div').forEach(studentDiv => {
+                const studentName = studentDiv.querySelector('p').textContent.toLowerCase();
+                const studentId = studentDiv.querySelector('button').getAttribute('data-matricule'); // Récupère la chaîne exacte
+                const classroom = studentDiv.closest('.class-group')
+                                    .querySelector('.class-header h4').textContent
+                                    .split(' (')[0];
 
-        if (studentName.includes(query)) {
-            // Crée un élément de résultat conforme à votre style
-            const resultItem = document.createElement('div');
-            resultItem.className = 'p-4 hover:bg-gray-100 border-b border-gray-200 last:border-b-0';
-            resultItem.innerHTML = `
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h4 class="font-medium">${studentDiv.querySelector('p').textContent}</h4>
-                        <p class="text-sm text-gray-500">${classroom}</p>
-                    </div>
-                    <button onclick="window.location.href='{{ route('student.info', ['matricule' => $eleve->matricule]) }}'" 
-                            class="text-blue-600 hover:text-blue-800 transition-colors flex items-center">
-                        <i class="fas fa-info-circle mr-2"></i>
-                        Voir les informations
-                    </button>
-                </div>
-            `;
-            resultsContainer.appendChild(resultItem);
+                if (studentName.includes(query)) {
+                    // Crée un élément de résultat
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'p-4 hover:bg-gray-100 border-b border-gray-200 last:border-b-0';
+                    const studentInfoUrl = window.Laravel.routes.studentInfo.replace(':matricule', studentId);
+                    resultItem.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-medium">${studentDiv.querySelector('p').textContent}</h4>
+                                <p class="text-sm text-gray-500">${classroom}</p>
+                            </div>
+                            <button onclick="window.location.href='${studentInfoUrl}'"
+                                    class="text-blue-600 hover:text-blue-800 transition-colors flex items-center">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                Voir les informations
+                            </button>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(resultItem);
+                }
+            });
+
+            // Gère l'affichage des résultats ou du message vide
+            if (resultsContainer.children.length === 0) {
+                resultsContainer.innerHTML = '<div class="p-4 text-gray-500">Aucun élève trouvé</div>';
+            }
+            resultsContainer.classList.remove('hidden');
         }
-    });
 
-    // Gère l'affichage des résultats ou du message vide
-    if (resultsContainer.children.length === 0) {
-        resultsContainer.innerHTML = '<div class="p-4 text-gray-500">Aucun élève trouvé</div>';
-    }
-    resultsContainer.classList.remove('hidden');
-}
         document.addEventListener('click', function(event) {
             if (!searchResults.contains(event.target) && event.target !== searchInput && event.target !== searchBtn) {
                 searchResults.classList.add('hidden');
             }
         });
     </script>
-
 </body>
 </html>

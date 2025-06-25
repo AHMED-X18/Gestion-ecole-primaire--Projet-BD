@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <label for="lieu_naissance"><i class="fas fa-map-marker-alt mr-1"></i> Lieu_naissance</label>
+                <label for="lieu_naissance"><i class="fas fa-map-marker-alt mr-1"></i> Lieu de naissance</label>
                 <input type="text" id="lieu_naisance" name="lieu_naissance" required placeholder="Votre lieu de naissance">
                 <div class="input-icon">
                     <i class="fas fa-map-marker-alt"></i>

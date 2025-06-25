@@ -13,7 +13,7 @@
       <p>Connectez-vous à votre compte existant.</p>
     </div>
     <div class="right-panel">
-      <h2>Connexion</h2>
+            <h2 class="text-xl font-semibold mb-4">Connexion</h2>
 
       <form method="POST" action="{{ route('login.user') }}">
         @csrf
@@ -47,15 +47,11 @@
             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
             Se souvenir de moi
           </label>
-          <a >Mot de passe oublié ?</a>
+          <a href="#">Mot de passe oublié ?</a>
         </div>
 
         <button type="submit" class="login-btn" >Se connecter</button>
       </form>
-
-      <div class="signup-link">
-        Nouveau ici? <a href="{{ route('inscription') }}">Créer un compte</a>
-      </div>
     </div>
   </div>
 </body>

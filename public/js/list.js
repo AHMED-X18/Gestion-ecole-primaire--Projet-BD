@@ -2,21 +2,16 @@ const appRoutes = {
     students: {
         create: "/student.create",
         list: '/student.index',
-        classes: '{{ route("classes.index") }}',
-        bulletins: '{{ route("bulletins.index") }}',
-        schedule: '{{ route("schedules.index") }}',
-        stats: '{{ route("stats.index") }}'
+        bulletins: '/student.note',
+        schedule: '/student.schedule'
     },
     teachers: {
-        create: '{{ route("teachers.create") }}',
-        list: '{{ route("teachers.index") }}',
-        schedule: '{{ route("schedules.teachers") }}',
-        classes: '{{ route("classes.teachers") }}',
-        evaluations: '{{ route("evaluations.index") }}',
-        reports: '{{ route("reports.teachers") }}'
+        create: '/formulairecreation',
+        list: '/teacher.index',
+        schedule: '/student.schedule'
     },
     admin: {
-        create: '{{ route("admin.create") }}',
+        create: '/inscription',
         list: '{{ route("admin.index") }}',
         accounting: '{{ route("accounting.index") }}',
         communication: '{{ route("communication.index") }}',
