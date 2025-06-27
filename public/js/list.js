@@ -12,11 +12,11 @@ const appRoutes = {
     },
     admin: {
         create: '/inscription',
-        list: '{{ route("admin.index") }}',
-        accounting: '{{ route("accounting.index") }}',
-        communication: '{{ route("communication.index") }}',
-        archives: '{{ route("archives.index") }}',
-        facilities: '{{ route("facilities.index") }}'
+        list: '/admin.list',
+        comptabilite: '/comptabilite',
+        communication: '/communication',
+        archives: '/archive',
+        local: '/local'
     },
     maintenance: {
         create: '{{ route("maintenance.create") }}',

@@ -29,7 +29,7 @@ Route::get('/show/{id}', [AdminController::class,'show']);
 
 Route::get("/student.create", [Eleve_controller::class, 'create']); // route pour afficher le formulaire de création d'un nouvel élève
 
-Route::get("/student.index", [Classe_controller::class,"index"]); //route pour afficher la liste des eleves
+Route::get("/student.index", [Classe_controller::class,"index"])-> name('student.index'); //route pour afficher la liste des eleves
 
 Route::get("/student.info/{matricule}", [Eleve_controller::class,'show'])->name('student.info'); // route pour trouver un eleve spécifique par son id
 
@@ -52,3 +52,42 @@ Route::get('/formulairecreation', [Enseignant_controller::class,'create']);
 Route::post("/enseignant.store", [Enseignant_controller::class,'store'])->name('enseignant.store');
 
 Route::get('/teacher.index',[Enseignant_controller::class,'index']);
+
+Route::get("/teacher.info/{id_maitre}", [Enseignant_controller::class,'show'])->name('teacher.info'); // route pour trouver un enseignant spécifique par son id
+
+use App\Http\Controllers\Composer_controller;
+
+// Route principale pour afficher le formulaire
+Route::get('/notes', [Composer_controller::class, 'index'])->name('notes.index');
+
+// Route pour récupérer les matières d'une classe
+Route::get('/notes/matieres/{classeId}', [Composer_controller::class, 'getMatieresByClasse'])->name('notes.matieres');
+
+// Route pour sauvegarder les notes en lot
+Route::post('/notes/save-bulk', [Composer_controller::class, 'saveNotesBulk'])->name('notes.save-bulk');
+
+// Route pour récupérer les notes existantes
+Route::get('/notes/classe/{classeId}/sequence/{sequence}', [Composer_controller::class, 'getNotesForClasseSequence'])->name('notes.get-notes');
+
+// Route pour supprimer une note
+Route::delete('/notes/delete', [Composer_controller::class, 'deleteNote'])->name('notes.delete');
+
+// Route pour obtenir l'historique d'un élève
+Route::get('/notes/history/{matricule}/{id_matiere}', [Composer_controller::class, 'getStudentHistory'])->name('notes.history');
+
+// Route pour obtenir les statistiques
+Route::get('/notes/stats', [Composer_controller::class, 'getStats'])->name('notes.stats');
+
+Route::get('/bulletin', [Eleve_controller::class, 'showBulletin'])->name('student.bulletin');
+
+Route::get('/archive', [AdminController::class, 'archive'])->name('archive');
+
+Route::get('/local', [AdminController::class, 'local'])->name('local');
+
+Route::get('/comptabilite', [AdminController::class, 'comptabilite'])->name('comptabilite');
+
+Route::get('/communication', [AdminController::class, 'communication'])->name('communication');
+
+Route::get('/admin.list', [AdminController::class, 'index'])->name('listepersonnel'); // route pour afficher la liste du personnel
+
+Route::delete('/supprimerEnseignant/{id_maitre}', [Enseignant_controller::class,'destroy'] ) -> name('deleteTeacher');

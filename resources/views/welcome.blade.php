@@ -15,10 +15,10 @@
             <div class="flex justify-between">
                 <div class="flex space-x-7">
                     <div>
-                    
+
                         <img src="/images/logo.png" alt="Logo" class="h-20 w-20 mr-2">
                         <span class="font-semibold text-green-600 text-lg">Les Étoiles de l'Avenir</span>
-            
+
                     </div>
                 </div>
                 <div class="hidden md:flex items-center space-x-1">
@@ -66,7 +66,7 @@
             <h2 class="text-3xl font-bold text-center text-green-600 mb-12">À propos de notre école</h2>
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-8 md:mb-0">
-                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="École" class="rounded-lg shadow-xl">
+                    <img src="/images/ecole.jpg" alt="École" class="rounded-lg shadow-xl">
                 </div>
                 <div class="md:w-1/2 md:pl-12">
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Notre histoire</h3>

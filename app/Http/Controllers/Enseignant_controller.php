@@ -63,8 +63,8 @@ class Enseignant_controller extends Controller
     // Affiche un enseignant spécifique
     public function show($id)
     {
-        $enseignant = Enseignant::findOrFail($id);
-        return view('enseignants.show', compact('enseignant'));
+        $enseignant = Enseignant::where('id_maitre', $id)->firstOrFail();
+        return view('InformationEnseignant', compact('enseignant'));
     }
 
     // Affiche le formulaire d'édition pour un enseignant existant
@@ -113,7 +113,7 @@ class Enseignant_controller extends Controller
     // Supprime un enseignant
     public function destroy($id)
     {
-        $enseignant = Enseignant::findOrFail($id);
+        $enseignant = Enseignant::where('id_maitre', $id)->firstOrFail();
         $enseignant->delete();
 
         return redirect()->route('enseignants.index')->with('success', 'Enseignant supprimé avec succès !');

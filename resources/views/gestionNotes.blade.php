@@ -100,7 +100,7 @@
                 </div>
 
                 <!-- Option 2: Générer bulletin -->
-                <div class="card bg-white rounded-lg p-6 cursor-pointer" onclick="showGenerateReport()">
+                <div class="card bg-white rounded-lg p-6 cursor-pointer" onclick="window.location.href='{{ route('student.bulletin')}}'">
                     <div class="text-center">
                         <div class="mb-4 text-green-500">
                             <i class="fas fa-file-alt text-5xl"></i>

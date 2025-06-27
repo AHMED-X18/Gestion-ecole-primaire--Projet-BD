@@ -122,12 +122,11 @@ class Eleve_controller extends Controller
     }
 
     // Supprime un élève
-    public function destroy($id)
+    public function destroy($matricule)
     {
-        $eleve = Eleve::findOrFail($id);
+        $eleve = Eleve::where('matricule', $matricule)->firstOrFail();
         $eleve->delete();
-
-        return redirect()->route('/student.index')->with('success', 'Élève supprimé avec succès !');
+        return redirect()->route('student.index')->with('success', 'Élève supprimé avec succès');
     }
 
     public function afficherNotes(){
@@ -136,17 +135,29 @@ class Eleve_controller extends Controller
     }
 
     public function InsererNotes()
-    {
-        $classes = Classe::with('eleve')->get(); // Charger les classes avec leurs élèves
-        $studentsData = [];
-        $eleve = Eleve::with(())
+{
+    $classes = Classe::all();
+    $studentsData = [];
 
-        foreach ($classes as $classe) {
-            $studentsData[$classe->id_classe] = $classe->; // Utiliser la relation 'eleves'
-        }
-        dd($studentsData);
-        $matieres = Matiere::all(); // Récupérer les matières
-        return view('InsertionNotes', compact('classes', 'studentsData', 'matieres'));
+    foreach ($classes as $classe) {
+        // Récupérer directement les élèves de cette classe
+        $eleves = Eleve::where('id_classe', $classe->id_classe)->get();
+        $studentsData[$classe->id_classe] = $eleves;
+    }
+
+
+    $matieres = Matiere::all();
+    return view('InsertionNotes', compact('classes', 'studentsData', 'matieres'));
+}
+
+    public function showBulletin(){
+        return view('bulletin');
+    }
+
+    public function Bulletin($id){
+        $eleve=Eleve::findOrFail($id);
+        return view('bulletin', compact('eleve'));
+
     }
 }
 

@@ -286,7 +286,7 @@
                     day: zone.dataset.day,
                     time: zone.dataset.time,
                     subjectId: subject.dataset.id_matiere, // Utilisation de id_matiere
-                    subjectName: subject.textContent.trim(), // Nom de la matière
+                    subjectName: subject.dataset.id_matiere.trim(), // Nom de la matière
                     colorIndex: colorIndex
                 });
             }

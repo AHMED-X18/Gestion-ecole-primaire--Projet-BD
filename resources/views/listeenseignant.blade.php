@@ -56,7 +56,7 @@
                     <div class="col-span-4 md:col-span-3 flex items-center">
                         <img src="{{ asset("images/".$enseignant->profil) }}"  class="w-10 h-10 rounded-full mr-3">
                         <div>
-                            <h4 class="font-medium text-gray-800">{{ $enseignant->prenom }} {{ $enseignant->nom }}</h4>
+                            <h4 class="font-medium text-gray-800">{{ $enseignant->nom }} {{ $enseignant->prénom }}</h4>
                             <p class="text-sm text-gray-500">Né le {{ \Carbon\Carbon::parse($enseignant->date_naissance)->format('d/m/Y') }}</p>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-span-2 md:col-span-2 flex flex-col items-center">
                         <div class="flex justify-center">
-                            <button class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-full transition">
+                            <button class="p-2 text-indigo-600 hover:bg-indigo-50 rounded-full transition" onclick="window.location.href='{{ route('teacher.info',$enseignant->id_maitre) }}'">
                                 <i class="fas fa-eye"> </i>Voir les informations
                             </button>
                         </div>

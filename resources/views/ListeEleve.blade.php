@@ -192,7 +192,7 @@
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
                                                     <button data-matricule="{{ $eleve->matricule }}"
-                                                            class="text-blue-600 hover:text-blue-800 transition-colors">
+                                                            class="text-blue-600 hover:text-blue-800 transition-colors" onclick=window.Laravel>
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>
                                                 </div>
@@ -227,7 +227,7 @@
                                             @foreach($eleves['anglo'][$classe->id_classe] as $eleve)
                                                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50 rounded">
                                                     <p>{{ $eleve->nom }} {{ $eleve->prénom }}</p>
-                                                    <button data-matricule="{{ $eleve->matricule }}"
+                                                    <button data-matricule="{{ $eleve->matricule }}" onclick=window.Laravel
                                                             class="text-blue-600 hover:text-blue-800 transition-colors">
                                                         <i class="fas fa-info-circle"></i> Voir les informations
                                                     </button>

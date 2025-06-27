@@ -40,11 +40,11 @@ function showOptions(category) {
             title = 'Options pour le Personnel Administratif';
             options = [
                 {icon: 'user-plus', text: 'Ajouter un membre', routeKey: 'create', color: 'bg-red-100 text-red-600' },
-                {icon: 'users', text: 'Liste du personnel', color: 'bg-red-100 text-red-600'},
-                {icon: 'file-invoice-dollar', text: 'Gestion de la comptabilité', color: 'bg-red-100 text-red-600'},
-                {icon: 'envelope', text: 'Communication avec les parents', color: 'bg-red-100 text-red-600'},
-                {icon: 'archive', text: 'Gestion des archives', color: 'bg-red-100 text-red-600'},
-                {icon: 'building', text: 'Gestion des locaux', color: 'bg-red-100 text-red-600'}
+                {icon: 'users', text: 'Liste du personnel', routeKey:'list', color: 'bg-red-100 text-red-600'},
+                {icon: 'file-invoice-dollar', text: 'Gestion de la comptabilité', routeKey:'comptabilite', color: 'bg-red-100 text-red-600'},
+                {icon: 'envelope', text: 'Communication avec les parents', routeKey:'communication', color: 'bg-red-100 text-red-600'},
+                {icon: 'archive', text: 'Gestion des archives', routeKey:'archives', color: 'bg-red-100 text-red-600'},
+                {icon: 'building', text: 'Gestion des locaux', routeKey:'local', color: 'bg-red-100 text-red-600'}
             ];
             break;
         case 'maintenance':

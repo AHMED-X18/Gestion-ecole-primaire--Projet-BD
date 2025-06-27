@@ -8,18 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @media print {
-            /* Styles spécifiques à l'impression */
             body {
                 font-size: 12pt;
                 background: none;
                 color: #000;
             }
-
             .no-print {
                 display: none !important;
             }
-
-            /* Force les couleurs pour l'impression */
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
@@ -41,13 +37,12 @@
                     <h2 class="text-lg font-semibold text-blue-700 border-b pb-2">
                         <i class="fas fa-info-circle mr-2"></i>Informations de l'élève
                     </h2>
-
                     <div class="space-y-4 mt-4">
                         <p><strong>Matricule:</strong> {{ $eleve->matricule }}</p>
                         <p><strong>Nom:</strong> {{ $eleve->nom }}</p>
                         <p><strong>Prénom:</strong> {{ $eleve->prénom }}</p>
-                        <p><strong>Date et lieu de naissance:</strong> {{ $eleve->date_naissance }} À {{$eleve->lieu_naissance}}</p>
-                        <p><strong>Sexe:</strong> {{ $eleve->sexe}}</p>
+                        <p><strong>Date et lieu de naissance:</strong> {{ $eleve->date_naissance }} À {{ $eleve->lieu_naissance }}</p>
+                        <p><strong>Sexe:</strong> {{ $eleve->sexe }}</p>
                         <p><strong>Classe:</strong> {{ $eleve->id_classe }}</p>
                         <p><strong>Statut:</strong> {{ $eleve->statut }}</p>
                         <p><strong>Adresse:</strong> {{ $eleve->addresse }}</p>
@@ -56,7 +51,7 @@
 
                 <!-- Section Photo de profil -->
                 <div class="flex justify-center">
-                    <img id="profilePreview" src="{{ asset("images/".$eleve->profil) }}" alt="Photo de profil" class="profile-show" width="300" height="300">
+                    <img id="profilePreview" src="{{ asset('images/' . $eleve->profil) }}" alt="Photo de profil" class="profile-show" width="300" height="300">
                 </div>
             </div>
 
@@ -64,28 +59,29 @@
             <h2 class="text-lg font-semibold text-blue-700 border-b pb-2 mt-6 px-6">
                 <i class="fas fa-user-tie mr-2"></i>Informations du tuteur
             </h2>
-
             <div class="px-6 space-y-4 mt-4">
                 <p><strong>Nom complet du tuteur:</strong> {{ $eleve->nom_tuteur }}</p>
                 <p><strong>Téléphone 1:</strong> {{ $eleve->tel1_tuteur }}</p>
                 <p><strong>Téléphone 2:</strong> {{ $eleve->tel2_tuteur }}</p>
                 <p><strong>Email du tuteur:</strong> {{ $eleve->email_tuteur }}</p>
             </div>
-            <div class="px-6 space-y-8 pt-4 px-6">
-                <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
-                    <i class="fas fa-user mr-2"></i> Modifier les informations
-                </button>
-                <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
-                    <i class="fas fa-folder-open mr-2"></i> Dossier d'inscription
-                </button>
-                 <button onclick="window.location.href=" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
-                    <i class="fas fa-folder-open mr-2"></i> Dossier d'examen
-                </button>
 
             <!-- Boutons d'action -->
+            <div class="px-6 space-y-8 pt-4">
+                <button onclick="window.location.href=''" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i class="fas fa-user mr-2"></i> Modifier les informations
+                </button>
+                <button onclick="window.location.href=''" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i class="fas fa-folder-open mr-2"></i> Dossier d'inscription
+                </button>
+                <button onclick="window.location.href=''" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i class="fas fa-folder-open mr-2"></i> Dossier d'examen
+                </button>
+            </div>
+
             <div class="flex justify-end space-x-4 pt-4 px-6">
-                <button onclick="window.location.href=" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center">
-                    <i class="fas fa-remove mr-2"></i> Supprimer cet élève
+                <button onclick="confirmDelete('{{ route('deleteStudent', ['matricule' => $eleve->matricule]) }}')" class="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center">
+                    <i class="fas fa-trash mr-2"></i> Supprimer cet élève
                 </button>
                 <button onclick="window.print()" class="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center">
                     <i class="fas fa-print mr-2"></i> Imprimer
@@ -96,10 +92,19 @@
             </div>
         </div>
     </div>
+
+    <!-- Hidden form for DELETE request -->
+    <form id="deleteStudentForm" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+
     <script>
-        function logout(){
+        function confirmDelete(deleteUrl) {
             if (confirm("Êtes-vous sûr de vouloir supprimer cet élève ?")) {
-                window.location.href = "{{ route('deleteStudent', ['matricule' => $eleve->matricule]) }}'";
+                const form = document.getElementById('deleteStudentForm');
+                form.action = deleteUrl;
+                form.submit();
             }
         }
     </script>

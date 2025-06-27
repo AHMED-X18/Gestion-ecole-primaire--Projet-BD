@@ -12,8 +12,19 @@ class Admin_Controller extends Controller
     // Affiche la liste des administrateurs
     public function index()
     {
-        $administrateurs = Admin::all();
-        return view('administrateurs.index', compact('administrateurs'));
+        // Récupérer le personnel groupé par poste
+        $personnelParPoste = Admin::all()->groupBy('statut');
+
+        // Calculer les statistiques
+        $stats = [
+            'total' => Admin::count(),
+            'directeurs' => Admin::where('statut', 'directeur')->count(),
+            'secretaires' => Admin::where('statut', 'secretaire')->count(),
+            'tresoriers' => Admin::where('statut', 'tresorier')->count(),
+            'autres' => Admin::where('statut', 'autre')->count(),
+        ];
+
+        return view('listepersonnel', compact('personnelParPoste', 'stats'));
     }
 
     // Affiche le formulaire de connexion d'un administrateur
@@ -148,5 +159,19 @@ class Admin_Controller extends Controller
     }
 */
 
+    public function archive(){
+        return view('archives');
+    }
 
+    public function comptabilite(){
+        return view('comptabilité');
+    }
+
+    public function local(){
+        return view('Locaux');
+    }
+
+    public function communication(){
+        return view('Communication_parents');
+    }
 }

@@ -4,6 +4,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Eleve extends Model{
+
+    protected $primaryKey = 'matricule'; 
+    public $incrementing = false; 
+    protected $keyType = 'string'; 
     protected $table = 'eleve';
     protected $fillable = ['matricule', 'nom', 'prénom', 'date_naissance','lieu_naissance', 'sexe', 'nom_tuteur', 'tel1_tuteur', 'tel2_tuteur', 'statut', 'addresse', 'email_tuteur', 'id_classe','profil'];
 
